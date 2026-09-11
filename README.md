@@ -13,8 +13,8 @@
 
 </div>
 
-> [!NOTE]
-> This is an independent educational lab project created while completing a **Google AI Professionals course**. It was built for hands-on practice with vibe coding and Google AI Studio. It is not an official Google product and is not endorsed or maintained by Google.
+> [!WARNING]
+> This is only a **practice project** created while completing a Google AI Professionals course lab. It may contain bugs, errors, incomplete behavior, or inaccurate AI-generated results. It is not production-ready or an official Google product.
 
 ## 🌟 Overview
 
@@ -106,17 +106,6 @@ Keep the development server running. Then, on the same computer, open `http://lo
 > [!IMPORTANT]
 > `localhost` is a local development address, not a public live-demo link. It only works after you run `npm run dev` on your computer.
 
-## 🔐 Privacy and Access
-
-| Item | Behavior |
-|---|---|
-| Gemini API key | Read by the server from `.env`; never commit a real key |
-| Decision input | Sent to the Gemini API when AI analysis is available |
-| Saved history | Stored locally in the user's browser |
-| GitHub access | Controlled by the GitHub App installation settings, not this codebase |
-
-The repository contains no configuration that grants Google AI Studio access to other GitHub repositories. Any GitHub App access should be reviewed separately under **GitHub Settings → Applications → Installed GitHub Apps → Configure**.
-
 ## 📁 Project Structure
 
 ```text
@@ -140,10 +129,6 @@ Vibe-Coding--Tie-breaker/
 - Connect a React interface to Gemini through a server-side API
 - Request and render structured JSON responses
 - Turn a course-lab idea into a portfolio-ready repository
-
-## ⚠️ Educational Use
-
-AI-generated recommendations can be incomplete or inaccurate. This practice app is designed to support reflection—not to replace professional, financial, medical, legal, or other high-stakes advice.
 
 ## 👩‍💻 Author
 
