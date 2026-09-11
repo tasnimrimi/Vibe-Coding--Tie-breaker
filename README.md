@@ -101,7 +101,10 @@ GEMINI_API_KEY="your_api_key_here"
 npm run dev
 ```
 
-Open **http://localhost:3000** in your browser.
+Keep the development server running. Then, on the same computer, open `http://localhost:3000` in your browser.
+
+> [!IMPORTANT]
+> `localhost` is a local development address, not a public live-demo link. It only works after you run `npm run dev` on your computer.
 
 ## 🔐 Privacy and Access
 
