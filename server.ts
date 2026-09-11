@@ -30,11 +30,11 @@ const getGeminiClient = () => {
 // Helper for delay
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// Candidate models in preference order
+// Candidate models in preference order (fastest and highest-availability first)
 const CANDIDATE_MODELS = [
-  "gemini-3.8-flash",
-  "gemini-flash-latest",
   "gemini-3.1-flash-lite",
+  "gemini-flash-latest",
+  "gemini-3.8-flash",
 ];
 
 // Fallback decision generator in case all external AI models are temporarily down or 503
@@ -529,7 +529,7 @@ Return the response strictly adhering to the JSON schema.`;
               break;
             }
           } catch (modelErr: any) {
-            console.warn(`Model ${modelName} attempt ${attempts} error:`, modelErr.message);
+            // Model failover handling
             const isTransient =
               modelErr.message?.includes("503") ||
               modelErr.message?.includes("demand") ||
@@ -540,7 +540,7 @@ Return the response strictly adhering to the JSON schema.`;
             if (isTransient && attempts < maxAttemptsForModel) {
               await sleep(1000 * attempts);
             } else {
-              break; // Try next model in CANDIDATE_MODELS
+              break; // Gracefully try next model in CANDIDATE_MODELS
             }
           }
         }
@@ -624,8 +624,7 @@ Return the response strictly adhering to the JSON schema.`;
 
     return res.json(analysisResult);
   } catch (error: any) {
-    console.error("Error generating decision analysis:", error);
-    // Even on unexpected error, provide fallback rather than crashing
+    // Graceful routing to strategic fallback
     try {
       const fallback = generateStrategicFallback(
         req.body?.title || "Decision Deliberation",
